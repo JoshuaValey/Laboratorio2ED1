@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CustomGenerics.Interfaces
 {
-    class NotLinearDataStructureBase
+    public abstract class NotLinearDataStructureBase<T>
     {
+        protected abstract void Insert(T value);
+        protected abstract T Delete(T value);
     }
 }
