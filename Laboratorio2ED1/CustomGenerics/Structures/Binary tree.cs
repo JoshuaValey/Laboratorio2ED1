@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,49 @@ namespace CustomGenerics.Structures
 {
     class Binary_tree<T> : NotLinearDataStructureBase<T>, IEnumerable<T>
     {
-        Node<T> Root = new Node<T>();
-
-        public void Node(T data)
+        protected override void Add(Node<T> actual, Node<T> a_insert)
         {
-            Root.value = data;
-            Root.Left = null;
-            Root.Right = null;
+            //cuando es mayor
+            if (a_insert.id > actual.id)
+            {
+                if (actual.Right == null)
+                {
+                    actual.Right = a_insert;
+                }
+                else
+                {
+                    Add(actual.Right, a_insert);
+                }
+            }
+
+            //cuando es menor 
+            else
+            {
+                if (actual.Left == null)
+                {
+                    actual.Left = a_insert;
+                }
+                else
+                {
+                    Add(actual.Left, a_insert);
+                }
+            }
         }
 
-        public void Start(T data)
+        protected override T Delete(T value)
         {
-            Root.value = data;
+            //decidir si se desea unir por izquierda, derecha o volver a insertar al arbol y se ordenaria bien
+            throw new NotImplementedException();
         }
 
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
