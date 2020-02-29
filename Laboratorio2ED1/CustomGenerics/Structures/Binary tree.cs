@@ -14,10 +14,18 @@ namespace CustomGenerics.Structures
         //delegates declaration
         //delete methots
         //eliminar
-        delegate bool ValueIsThan(Node<T> actual, T value);
 
-    private void Eliminar(Node<T> actual, T value, ValueIsThan valueIsLess, 
-        ValueIsThan valueIsGreater, ValueIsThan valueIsEqual)
+          
+
+        #region Métodos y delegados para eliminación de nodos. 
+        public delegate bool ValueIsThan(Node<T> actual, T value);
+        public delegate bool ReplaceDelegate(Node<T> actual, Node<T> newNode);
+
+        //SobreCarga de Delete
+        public void Eliminar(Node<T> actual, T value, ValueIsThan valueIsLess,
+            ValueIsThan valueIsGreater, ValueIsThan valueIsEqual, 
+            ReplaceDelegate replaceDelegateLeft = null,
+            ReplaceDelegate replaceDelegateRight = null)
         {
             if (actual == null)
             {
@@ -25,8 +33,8 @@ namespace CustomGenerics.Structures
             }
             else if (valueIsLess(actual, value))
             {
-                Eliminar(actual.Left, value, 
-                    valueIsLess,valueIsGreater, valueIsEqual);
+                Eliminar(actual.Left, value,
+                    valueIsLess, valueIsGreater, valueIsEqual);
             }
             else if (valueIsGreater(actual, value))
             {
@@ -35,16 +43,102 @@ namespace CustomGenerics.Structures
             }
             else if (valueIsEqual(actual, value))
             {
-                //deleteNode();
+                DeleteNode(actual, replaceDelegateLeft, replaceDelegateRight);
                 throw new NotImplementedException();
             }
         }
 
+        private void DeleteNode(Node<T> nodeToDelete,
+            ReplaceDelegate replaceDelegateLeft,
+            ReplaceDelegate replaceDelegateRight)
+        {
+            // Eliminar si tiene ambos
+            if (nodeToDelete.Left != null && nodeToDelete.Right != null)
+            {
+                Node<T> lefter = ToLeft(nodeToDelete.Right);
+                nodeToDelete.Value = lefter.Value;
+                DeleteNode(lefter, replaceDelegateLeft, replaceDelegateRight);
+            }                     
+            #region Eliminar el nodo si tiene solo uno de sus dos hijos
+                //Si tiene el nodo izquierdo
+            else if (nodeToDelete.Left != null)
+            {
+                Replace(nodeToDelete, nodeToDelete.Left, replaceDelegateLeft, replaceDelegateRight);
+                KillNode(nodeToDelete);
+            }
+            else if (nodeToDelete.Right != null)
+            {
+                Replace(nodeToDelete, nodeToDelete.Right, replaceDelegateLeft, replaceDelegateRight);
+                KillNode(nodeToDelete);
+            }
+            #endregion
+            // Ha llegado al final del árbol.
+            else
+            {
+                Replace(nodeToDelete, null, replaceDelegateLeft, replaceDelegateRight);
+                KillNode(nodeToDelete);
+            }
+        }
+
+        private void KillNode(Node<T> nodeToDelete)
+        {
+            nodeToDelete.Right = null;
+            nodeToDelete.Left = null;
+            nodeToDelete.Father = null;
+        }
+
+        private void Replace(Node<T> actual, Node<T> newNode, 
+            ReplaceDelegate replaceDelegateLeft, 
+            ReplaceDelegate replaceDelegateRight)
+        {
+            if (actual.Father != null)
+            {
+                //arbol->value == arbol->father->izq->value
+                if (replaceDelegateLeft(actual, newNode))
+                {
+                    actual.Father.Left = newNode;
+                }//arbol->value == arbol->father->der->value
+                else if (replaceDelegateRight(actual, newNode))
+                {
+                    actual.Father.Right = newNode;
+                }
+
+            }
+            if (newNode != null)
+            {
+                //Asignarle un nuevo padre
+                newNode.Father = actual.Father;
+            }
+        }
+
+        //Ir al nodo que esté más a la izquierda. 
+        private Node<T> ToLeft(Node<T> actual)
+        {
+            if (actual == null)//si actual está vacio
+            {
+                return null;
+            }
+            if (actual.Left != null)// si no está vacío y tiene hijo izquierdo
+            {
+                return ToLeft(actual.Left);
+            }
+            else//si no está vacío y no tine hijo izquierdo
+            {
+                return actual;
+            }
+        }
+
+
+        #endregion
+
+      
 
         public void Insert(Node<T> actual, T value, Node<T> father)
         {
             throw new NotImplementedException();
         }
+
+
 
         public void Order(Node<T> node)
         {
@@ -85,7 +179,7 @@ namespace CustomGenerics.Structures
 
         public bool Searching(Node<T> tree, T value)
         {
-            if(tree == null) //tree is empty
+            if (tree == null) //tree is empty
             {
                 return false;
             }
@@ -136,13 +230,10 @@ namespace CustomGenerics.Structures
             throw new NotImplementedException();
         }
 
-        public void Delete(Node<T> actual, T value)
-        {
-            throw new NotImplementedException();
-        }
+       
 
-      
-        
+
+
         public void postOrder(Node<T> tree)
         {
             if (tree == null)
@@ -163,6 +254,11 @@ namespace CustomGenerics.Structures
         }
 
         IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Node<T> actual, T value)
         {
             throw new NotImplementedException();
         }
