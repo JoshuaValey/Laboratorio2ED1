@@ -10,6 +10,8 @@ namespace CustomGenerics.Interfaces
     public abstract class NotLinearDataStructureBase<T>
     {
         //ponerla como interfaz y agregarle metodos
-        public void insertNode(Node<T> tree, T value, Node<T> father);
+        protected abstract void Add(Node<T> actual, Node<T> a_insert);
+        protected abstract T Delete(T value);
+        protected abstract Search
     }
 }

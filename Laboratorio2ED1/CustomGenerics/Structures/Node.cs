@@ -8,10 +8,9 @@ namespace CustomGenerics.Structures
 {
     class Node<T>
     {
-        public Node<T> Root { get; set; }
+        public Node<T> father { get; set; }
         public Node<T> Left { get; set; }
         public Node<T> Right { get; set; }
-        public int id;
-        public string name;
+        public T value;
     }
 }
