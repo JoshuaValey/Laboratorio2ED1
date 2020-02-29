@@ -41,25 +41,21 @@ namespace CustomGenerics.Structures
         }
 
 
-
-
-
-
-
-
-
         public void Insert(Node<T> actual, T value, Node<T> father)
         {
             throw new NotImplementedException();
         }
 
         public void Order(Node<T> node)
+        {
+
+        }
         public Node<T> createNode(T newValue, Node<T> father)
         {
             throw new NotImplementedException();
             Node<T> new_Node = new Node<T>();
-            new_Node.father = father;
-            new_Node.value = newValue;
+            new_Node.Father = father;
+            new_Node.Value = newValue;
             new_Node.Right = null;
             new_Node.Left = null;
             return new_Node;
@@ -75,8 +71,8 @@ namespace CustomGenerics.Structures
             }
             else //if the tree already have one or more nodes
             {
-                T valueRoot = tree.value; //get the root value
-                if (value < valueRoot) //if the element is smaller than root, insert left
+                T valueRoot = tree.Value; //get the root value
+                if (/*value < valueRoot*/) //if the element is smaller than root, insert left
                 {
                     insertNode(tree.Left, value, tree);
                 }
@@ -93,11 +89,11 @@ namespace CustomGenerics.Structures
             {
                 return false;
             }
-            else if ((tree.value).Equals(value)) //value foung
+            else if ((tree.Value).Equals(value)) //value foung
             {
                 return true;
             }
-            else if (value < tree.value) //search on smaller elements
+            else if (/*value < tree.Value*/) //search on smaller elements
             {
                 Searching(tree.Left, value);
             }
@@ -115,7 +111,7 @@ namespace CustomGenerics.Structures
             }
             else
             {
-                Console.Write(tree.value + " - ");
+                Console.Write(tree.Value + " - ");
                 preOrder(tree.Left);
                 preOrder(tree.Right);
             }
@@ -130,7 +126,7 @@ namespace CustomGenerics.Structures
             else
             {
                 inOrder(tree.Left);
-                Console.Write(tree.value + " - ");
+                Console.Write(tree.Value + " - ");
                 inOrder(tree.Right);
             }
         }
@@ -145,55 +141,8 @@ namespace CustomGenerics.Structures
             throw new NotImplementedException();
         }
 
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        IEnumerator IEnumerable.GetEnumerator()
+      
+        
         public void postOrder(Node<T> tree)
         {
             if (tree == null)
@@ -204,11 +153,16 @@ namespace CustomGenerics.Structures
             {
                 postOrder(tree.Left);
                 postOrder(tree.Right);
-                Console.Write(tree.value + " - ");
+                Console.Write(tree.Value + " - ");
             }
         }
 
         public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }
