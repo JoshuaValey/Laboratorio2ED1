@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\NotLinearDataStructureBase.cs" />
+    <Compile Include="Interfaces\INotLinearDataStructureBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structures\Binary tree.cs" />
     <Compile Include="Structures\Node.cs" />

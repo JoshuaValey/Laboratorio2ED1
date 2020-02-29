@@ -9,49 +9,119 @@ using CustomGenerics.Structures;
 
 namespace CustomGenerics.Structures
 {
-    class Binary_tree<T> : NotLinearDataStructureBase<T>, IEnumerable<T>
+    class Binary_tree<T> : INotLinearDataStructureBase<T>, IEnumerable<T>
     {
-        protected override void Add(Node<T> actual, Node<T> a_insert)
-        {
-            //cuando es mayor
-            if (a_insert.id > actual.id)
-            {
-                if (actual.Right == null)
-                {
-                    actual.Right = a_insert;
-                }
-                else
-                {
-                    Add(actual.Right, a_insert);
-                }
-            }
+        //delegates declaration
+        //delete methots
+        //eliminar
+        delegate bool ValueIsThan(Node<T> actual, T value);
 
-            //cuando es menor 
-            else
+    private void Eliminar(Node<T> actual, T value, ValueIsThan valueIsLess, 
+        ValueIsThan valueIsGreater, ValueIsThan valueIsEqual)
+        {
+            if (actual == null)
             {
-                if (actual.Left == null)
-                {
-                    actual.Left = a_insert;
-                }
-                else
-                {
-                    Add(actual.Left, a_insert);
-                }
+                return;
+            }
+            else if (valueIsLess(actual, value))
+            {
+                Eliminar(actual.Left, value, 
+                    valueIsLess,valueIsGreater, valueIsEqual);
+            }
+            else if (valueIsGreater(actual, value))
+            {
+                Eliminar(actual.Right, value,
+                    valueIsLess, valueIsGreater, valueIsEqual);
+            }
+            else if (valueIsEqual(actual, value))
+            {
+                //deleteNode();
+                throw new NotImplementedException();
             }
         }
 
-        protected override T Delete(T value)
+
+
+
+
+
+
+
+
+        public void Insert(Node<T> actual, T value, Node<T> father)
         {
-            //decidir si se desea unir por izquierda, derecha o volver a insertar al arbol y se ordenaria bien
             throw new NotImplementedException();
         }
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        public void Order(Node<T> node)
         {
             throw new NotImplementedException();
         }
+
+        public void Search(Node<T> actual, T value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Node<T> actual, T value)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<T> GetEnumerator()
         {
             throw new NotImplementedException();
         }
