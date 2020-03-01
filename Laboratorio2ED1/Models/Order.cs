@@ -10,6 +10,11 @@ namespace Laboratorio2ED1.Models
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
         public string Nit { get; set; }
-        
+        public List<Drug> DrugList { get; set; }
+        public double TotalToPay { get; set; }
+
+
+
+
     }
 }
