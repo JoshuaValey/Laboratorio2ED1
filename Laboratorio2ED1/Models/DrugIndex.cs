@@ -9,5 +9,7 @@ namespace Laboratorio2ED1.Models
     {
         public int Stock{ get; set; }
         public string DrugName { get; set; }
+
+        public int Line { get; set; }
     }
 }
