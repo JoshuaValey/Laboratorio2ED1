@@ -9,7 +9,7 @@ using CustomGenerics.Structures;
 
 namespace CustomGenerics.Structures
 {
-    class Binary_tree<T> : INotLinearDataStructureBase<T>, IEnumerable<T>
+    public class Binary_tree<T> : INotLinearDataStructureBase<T>, IEnumerable<T>
     {
         //delegates declaration
         //delete methots
@@ -146,7 +146,7 @@ namespace CustomGenerics.Structures
         }
         public Node<T> createNode(T newValue, Node<T> father)
         {
-            throw new NotImplementedException();
+           
             Node<T> new_Node = new Node<T>();
             new_Node.Father = father;
             new_Node.Value = newValue;
@@ -155,7 +155,7 @@ namespace CustomGenerics.Structures
             return new_Node;
         }
 
-        public void insertNode(Node<T> tree, T value, Node<T> father)
+       /* public void insertNode(Node<T> tree, T value, Node<T> father)
         {
             //if the tree is empty
             if (tree == null)
@@ -166,7 +166,7 @@ namespace CustomGenerics.Structures
             else //if the tree already have one or more nodes
             {
                 T valueRoot = tree.Value; //get the root value
-                if (/*value < valueRoot*/) //if the element is smaller than root, insert left
+                if (value < valueRoot) //if the element is smaller than root, insert left
                 {
                     insertNode(tree.Left, value, tree);
                 }
@@ -175,9 +175,9 @@ namespace CustomGenerics.Structures
                     insertNode(tree.Right, value, tree);
                 }
             }
-        }
+        }*/
 
-        public bool Searching(Node<T> tree, T value)
+        /*public bool Searching(Node<T> tree, T value)
         {
             if (tree == null) //tree is empty
             {
@@ -187,7 +187,7 @@ namespace CustomGenerics.Structures
             {
                 return true;
             }
-            else if (/*value < tree.Value*/) //search on smaller elements
+            else if (value < tree.Value) //search on smaller elements
             {
                 Searching(tree.Left, value);
             }
@@ -196,7 +196,7 @@ namespace CustomGenerics.Structures
                 Searching(tree.Right, value);
             }
         }
-
+        */
         public void preOrder(Node<T> tree)
         {
             if (tree == null)
