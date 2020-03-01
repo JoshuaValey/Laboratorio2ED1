@@ -9,7 +9,7 @@ using CustomGenerics.Structures;
 
 namespace CustomGenerics.Structures
 {
-    class Binary_tree<T> : INotLinearDataStructureBase<T>, IEnumerable<T>
+    public class Binary_tree<T> : INotLinearDataStructureBase<T>, IEnumerable<T>
     {
 
         #region methods and delegates 
@@ -53,13 +53,14 @@ namespace CustomGenerics.Structures
 
         public bool Searching(Node<T> tree, T value, Compare function)
         {
+            bool x = false;
             if (tree == null) //tree is empty
             {
-                return false;
+                x = false;
             }
             else if (function(value,tree.Value)==0) //value found
             {
-                return true;
+                x = true;
             }
             else if (function(value, tree.Value)<0) //search on smaller elements
             {
@@ -69,10 +70,7 @@ namespace CustomGenerics.Structures
             {
                 Searching(tree.Right, value, function);
             }
-            else //if value isn't on the tree
-            {
-                return false;
-            }
+            return x;
         }
 
         public void preOrder(Node<T> tree)
