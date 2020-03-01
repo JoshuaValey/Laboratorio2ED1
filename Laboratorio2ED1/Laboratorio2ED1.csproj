@@ -127,6 +127,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\IndexTree.cs" />
+    <Compile Include="Helpers\Storage.cs" />
     <Compile Include="Models\Drug.cs" />
     <Compile Include="Models\DrugIndex.cs" />
     <Compile Include="Models\Order.cs" />

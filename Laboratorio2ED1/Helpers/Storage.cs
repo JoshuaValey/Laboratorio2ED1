@@ -7,20 +7,17 @@ namespace Laboratorio2ED1.Helpers
 {
     public class Storage
     {
-        private static Storage _instance;
+        private Storage _instance = null;
 
-        public static Storage Instance
+        public Storage Instance
         {
             get
             {
-                if (_instance == null) _instance = new Storage();
+                if (Instance == null) _instance = new Storage();
                 return _instance;
             }
 
         }
-
-        public List<Drug> shoppingCart = new List<Drug>();
-
 
     }
 }
