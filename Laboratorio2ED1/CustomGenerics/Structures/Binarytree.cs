@@ -20,7 +20,7 @@ namespace CustomGenerics.Structures
 
         public Node<T> createNode(T newValue, Node<T> father)
         {
-            throw new NotImplementedException();
+           
             Node<T> new_Node = new Node<T>();
             new_Node.Father = father;
             new_Node.Value = newValue;
