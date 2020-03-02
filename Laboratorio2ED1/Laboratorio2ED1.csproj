@@ -126,9 +126,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\TreeNode.cs" />
     <Compile Include="Helpers\IndexTree.cs" />
-    <Compile Include="Helpers\ReadFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
