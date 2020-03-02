@@ -6,8 +6,9 @@ using CustomGenerics.Structures;
 
 namespace Laboratorio2ED1.Helpers
 {
-    public class IndexTree 
+    public class TreeNode 
     {
-
+        public int Id { get; set; }
+        public string Name {get;set;}
     }
 }
