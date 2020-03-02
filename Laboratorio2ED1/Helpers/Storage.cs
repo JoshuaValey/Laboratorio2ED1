@@ -2,22 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Laboratorio2ED1.Models;
 
 namespace Laboratorio2ED1.Helpers
 {
     public class Storage
     {
-        private Storage _instance = null;
+        private static Storage _instance = null;
 
-        public Storage Instance
+        public static Storage Instance
         {
             get
             {
-                if (Instance == null) _instance = new Storage();
+                if (_instance == null)
+                    _instance = new Storage();
+
                 return _instance;
             }
-
         }
+
+        public List<Order> shoppingCart = new List<Order>();
+        public List<Drug> OrderDrugList = new List<Drug>();
+
+        //List from json
+        public List<Drug> drugsList = new List<Drug>();
 
     }
 }

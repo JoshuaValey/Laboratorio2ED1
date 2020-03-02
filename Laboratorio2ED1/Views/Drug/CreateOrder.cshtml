@@ -1,0 +1,45 @@
+﻿@model Laboratorio2ED1.Models.Order
+
+@{
+    ViewBag.Title = "CreateOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateOrder</h2>
+
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+
+
+
+    @using (Html.BeginForm("Create", "Drug"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(drug => drug.CustomerName)
+            @Html.TextBoxFor(drug => drug.CustomerName, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(drug => drug.CustomerAddress)
+            @Html.TextBoxFor(drug => drug.CustomerAddress, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(drug => drug.Nit)
+            @Html.TextBoxFor(drug => drug.Nit, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(drug => drug.TotalToPay)
+        </div>
+
+        <button type="submit" class="btn btn-primary" value="Create">
+            Save
+        </button>
+
+       
+
+    }
+
+</div>
+
+
