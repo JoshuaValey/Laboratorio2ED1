@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Laboratorio2ED1.Helpers;
 using Laboratorio2ED1.Models;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Laboratorio2ED1.Controllers
 {
@@ -12,46 +14,15 @@ namespace Laboratorio2ED1.Controllers
     {
         public ActionResult Index()
         {
-            //Farmacos de prueba. 
-            Drug farmaco1 = new Drug {
-                Id = 1,
-                Description = "Flsmdfr",
-                Name = "Ositos de goma",
-                Price = 45.23,
-                ProductHouse = "Similares",
-                Stock = 30
-            };
-            Storage.Instance.drugsList.Add(farmaco1);
-            Drug farmaco2 = new Drug {
-                Id = 2,
-                Description = "Flsmdfr",
-                Name = "Ositos de goma",
-                Price = 45.23,
-                ProductHouse = "Similares",
-                Stock = 30
-            };
-            Storage.Instance.drugsList.Add(farmaco2);
-            Drug farmaco3 = new Drug
+            string filepath = Console.ReadLine();
+            StreamReader json = new StreamReader(filepath);
+            string jsons = json.ReadToEnd();
+            jsons = jsons.Replace("null", "0");
+            Drug[] JsonArray = JsonConvert.DeserializeObject<Drug[]>(jsons);
+            foreach(var item in JsonArray)
             {
-                Id = 3,
-                Description = "Flsmdfr",
-                Name = "Ositos de goma",
-                Price = 45.23,
-                ProductHouse = "Similares",
-                Stock = 30
-            };
-            Storage.Instance.drugsList.Add(farmaco3);
-
-            Drug farmaco4 = new Drug
-            {
-                Id = 4,
-                Description = "Flsmdfr",
-                Name = "Ositos de goma",
-                Price = 45.23,
-                ProductHouse = "Similares",
-                Stock = 30
-            };
-            Storage.Instance.drugsList.Add(farmaco4);
+                Storage.Instance.drugsList.Add(item);
+            }
 
             //Carga del json al comenzar el programa. 
             return View();
@@ -68,7 +39,7 @@ namespace Laboratorio2ED1.Controllers
         {
             
             Storage.Instance.OrderDrugList.Add(Storage.Instance.drugsList.Find((drug) => {
-                if (drug.Id == id)
+                if (drug.id == id)
                     return true;
                 else
                     return false;

@@ -7,11 +7,11 @@ namespace Laboratorio2ED1.Models
 {
     public class Drug
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string ProductHouse { get; set; }
-        public double Price { get; set; }
-        public int Stock { get; set; }
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
+        public string casa_productora { get; set; }
+        public string precio { get; set; }
+        public int existencia { get; set; }
     }
 }
