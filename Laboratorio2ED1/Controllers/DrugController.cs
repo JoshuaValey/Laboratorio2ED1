@@ -14,7 +14,7 @@ namespace Laboratorio2ED1.Controllers
     {
         public ActionResult Index()
         {
-            string filepath = Console.ReadLine();
+            /*string filepath = Console.ReadLine();
             StreamReader json = new StreamReader(filepath);
             string jsons = json.ReadToEnd();
             jsons = jsons.Replace("null", "0");
@@ -22,7 +22,50 @@ namespace Laboratorio2ED1.Controllers
             foreach(var item in JsonArray)
             {
                 Storage.Instance.drugsList.Add(item);
-            }
+            }*/
+
+            //Farmacos de prueba. 
+            Drug farmaco1 = new Drug
+            {
+                id = 1,
+                descripcion = "Flsmdfr",
+                nombre   = "Ositos de goma",
+                precio = 45.23,
+                casa_productora = "Similares",
+                existencia = 30
+            };
+            Storage.Instance.drugsList.Add(farmaco1);
+            Drug farmaco2 = new Drug
+            {
+                id = 2,
+                descripcion = "Flsmdfr",
+                nombre = "Ositos de goma",
+                precio = 45.23,
+                casa_productora = "Similares",
+                existencia = 30
+            };
+            Storage.Instance.drugsList.Add(farmaco2);
+            Drug farmaco3 = new Drug
+            {
+                id = 3,
+                descripcion = "Flsmdfr",
+                nombre = "Ositos de goma",
+                precio = 45.23,
+                casa_productora = "Similares",
+                existencia = 30
+            };
+            Storage.Instance.drugsList.Add(farmaco3);
+
+            Drug farmaco4 = new Drug
+            {
+                id = 4,
+                descripcion = "Flsmdfr",
+                nombre = "Ositos de goma",
+                precio = 45.23,
+                casa_productora = "Similares",
+                existencia = 30
+            };
+            Storage.Instance.drugsList.Add(farmaco4);
 
             //Carga del json al comenzar el programa. 
             return View();
