@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Laboratorio2ED1.Models.Drug>
+
+@{
+    ViewBag.Title = "DrugListOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DrugListOrder</h2>
+
+<p>
+    @Html.ActionLink("Continue to your order", "CreateOrder", null, new { @class = "btn btn-primary btn-lg" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.casa_productora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.casa_productora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        
+        <td>
+          
+        </td>
+    </tr>
+}
+
+</table>

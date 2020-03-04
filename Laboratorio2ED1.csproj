@@ -122,10 +122,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DrugController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IndexTree.cs" />
+    <Compile Include="Helpers\Storage.cs" />
+    <Compile Include="Models\Drug.cs" />
+    <Compile Include="Models\DrugIndex.cs" />
+    <Compile Include="Models\Entrada.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -267,10 +274,15 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Drug\Index.cshtml" />
+    <Content Include="Views\Drug\OrderList.cshtml" />
+    <Content Include="Views\Drug\DrugListOrder.cshtml" />
+    <Content Include="Views\Drug\CreateOrder.cshtml" />
+    <Content Include="Views\Drug\EntradaRehabastecer.cshtml" />
+    <Content Include="Views\Drug\Bill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -282,6 +294,12 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="CustomGenerics\CustomGenerics.csproj">
+      <Project>{0b201ac7-033a-46ee-88cf-ba1cf2a15718}</Project>
+      <Name>CustomGenerics</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
