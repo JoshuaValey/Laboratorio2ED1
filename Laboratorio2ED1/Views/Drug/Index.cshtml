@@ -6,5 +6,20 @@
 
 <h2>Index</h2>
 
-@Html.ActionLink("Create an Order","OrderList",null, new {@class = "btn btn-primary btn-lg"})
+@Html.ActionLink("Create an Order", "OrderList", null, new { @class = "btn btn-primary btn-lg" })
 
+<br>
+<br>
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+
+    @using (Html.BeginForm("UploadFile", "Drug",
+        FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            @Html.TextBox("file", "", new { type = "File" })
+            <br>
+            <br>
+            <input type="submit" value="Upload" class="btn btn-primary">
+        </div>
+    }
+</div>

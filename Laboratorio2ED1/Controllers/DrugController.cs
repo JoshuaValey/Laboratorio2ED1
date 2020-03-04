@@ -12,62 +12,54 @@ namespace Laboratorio2ED1.Controllers
 {
     public class DrugController : Controller
     {
-        public ActionResult Index()
+
+        public void JsonReader(string filepath)
         {
-            /*string filepath = Console.ReadLine();
             StreamReader json = new StreamReader(filepath);
             string jsons = json.ReadToEnd();
-            jsons = jsons.Replace("null", "0");
+            jsons = jsons.Replace("$", "0");
             Drug[] JsonArray = JsonConvert.DeserializeObject<Drug[]>(jsons);
-            foreach(var item in JsonArray)
+            DrugIndex[] JsonArray2 = JsonConvert.DeserializeObject<DrugIndex[]>(jsons);
+            foreach (var item in JsonArray)
             {
                 Storage.Instance.drugsList.Add(item);
-            }*/
+            }
+            foreach (var item in JsonArray2)
+            {
+                Storage.Instance.treeList.Add(item);
+            }
+            foreach (var item in JsonArray2)
+            {
+                Storage.Instance.treeList.Add(item);
+            }
 
-            //Farmacos de prueba. 
-            Drug farmaco1 = new Drug
-            {
-                id = 1,
-                descripcion = "Flsmdfr",
-                nombre   = "Ositos de goma",
-                precio = 45.23,
-                casa_productora = "Similares",
-                existencia = 30
-            };
-            Storage.Instance.drugsList.Add(farmaco1);
-            Drug farmaco2 = new Drug
-            {
-                id = 2,
-                descripcion = "Flsmdfr",
-                nombre = "Ositos de goma",
-                precio = 45.23,
-                casa_productora = "Similares",
-                existencia = 30
-            };
-            Storage.Instance.drugsList.Add(farmaco2);
-            Drug farmaco3 = new Drug
-            {
-                id = 3,
-                descripcion = "Flsmdfr",
-                nombre = "Ositos de goma",
-                precio = 45.23,
-                casa_productora = "Similares",
-                existencia = 30
-            };
-            Storage.Instance.drugsList.Add(farmaco3);
+        }
 
-            Drug farmaco4 = new Drug
+        [HttpPost]
+        public ViewResult UploadFile(HttpPostedFileBase file)
+        {
+            string directoryPath = "";
+            if (file.ContentLength > 0)
             {
-                id = 4,
-                descripcion = "Flsmdfr",
-                nombre = "Ositos de goma",
-                precio = 45.23,
-                casa_productora = "Similares",
-                existencia = 30
-            };
-            Storage.Instance.drugsList.Add(farmaco4);
+                string fileName = Path.GetFileName(file.FileName);
 
-            //Carga del json al comenzar el programa. 
+                directoryPath = Path.Combine(Server.MapPath("~/UploadedFiles"), fileName);
+
+                file.SaveAs(directoryPath);
+
+            }
+            JsonReader(directoryPath);
+            return View("index");
+        }
+
+
+
+
+
+        public ActionResult Index()
+        {
+
+            
             return View();
         }
         public ActionResult OrderList()

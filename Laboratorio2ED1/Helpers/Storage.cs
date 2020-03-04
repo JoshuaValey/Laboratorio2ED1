@@ -23,6 +23,8 @@ namespace Laboratorio2ED1.Helpers
 
         public List<Order> shoppingCart = new List<Order>();
         public List<Drug> OrderDrugList = new List<Drug>();
+        public List<DrugIndex> treeList = new List<DrugIndex>();
+
 
         //List from json
         public List<Drug> drugsList = new List<Drug>();
