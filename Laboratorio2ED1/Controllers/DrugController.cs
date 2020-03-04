@@ -14,6 +14,7 @@ namespace Laboratorio2ED1.Controllers
     {
         public ActionResult Index()
         {
+            //Json File to list
             string filepath = Console.ReadLine();
             StreamReader json = new StreamReader(filepath);
             string jsons = json.ReadToEnd();
@@ -23,8 +24,6 @@ namespace Laboratorio2ED1.Controllers
             {
                 Storage.Instance.drugsList.Add(item);
             }
-
-            //Carga del json al comenzar el programa. 
             return View();
         }
         public ActionResult OrderList()
