@@ -19,6 +19,7 @@ namespace Laboratorio2ED1.Controllers
             StreamReader json = new StreamReader(filepath);
             string jsons = json.ReadToEnd();
             jsons = jsons.Replace("null", "0");
+            jsons = jsons.Replace("$", "0");
             Drug[] JsonArray = JsonConvert.DeserializeObject<Drug[]>(jsons);
             foreach(var item in JsonArray)
             {
