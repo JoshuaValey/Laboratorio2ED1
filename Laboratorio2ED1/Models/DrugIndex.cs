@@ -7,7 +7,7 @@ namespace Laboratorio2ED1.Models
 {
     public class DrugIndex
     {
-        public string DrugName { get; set; }
-        public int Line { get; set; }
+        public string nombre { get; set; }
+        public int id { get; set; }
     }
 }
