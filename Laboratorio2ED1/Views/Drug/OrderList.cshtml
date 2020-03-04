@@ -14,19 +14,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.descripcion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProductHouse)
+            @Html.DisplayNameFor(model => model.casa_productora)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.precio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Stock)
+            @Html.DisplayNameFor(model => model.existencia)
         </th>
         <th></th>
     </tr>
@@ -35,22 +35,22 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductHouse)
+                @Html.DisplayFor(modelItem => item.casa_productora)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.precio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Stock)
+                @Html.DisplayFor(modelItem => item.existencia)
             </td>
             <td>
-                @Html.ActionLink("Add To Cart", "AddToCart", new { id = item.Id }, new { @class = "btn btn-primary btn-lg" })
+                @Html.ActionLink("Add To Cart", "AddToCart", new { id = item.id }, new { @class = "btn btn-primary btn-lg" })
 
             </td>
         </tr>

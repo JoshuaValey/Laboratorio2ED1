@@ -11,7 +11,7 @@ namespace Laboratorio2ED1.Models
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public string casa_productora { get; set; }
-        public string precio { get; set; }
+        public double precio { get; set; }
         public int existencia { get; set; }
     }
 }
