@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CustomGenerics.Structures
 {
-    public class Node<T>
+    public class Node<T> where T: IComparable
     {
         public Node<T> Father { get; set; }
         public Node<T> Left { get; set; }

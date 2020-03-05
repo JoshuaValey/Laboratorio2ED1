@@ -9,73 +9,60 @@ using CustomGenerics.Structures;
 
 namespace CustomGenerics.Structures
 {
-    public class Binary_tree<T> : INotLinearDataStructureBase<T>, IEnumerable<T>
+    public class Binary_tree<T> where T : IComparable, INotLinearDataStructureBase<T>
     {
-        //delegates declaration
-        //delete methots
-        //eliminar
-
-          
+        public Node<T> root = null;
 
         #region Métodos y delegados para eliminación de nodos. 
-        public delegate bool ValueIsThan(Node<T> actual, T value);
-        public delegate bool ReplaceDelegate(Node<T> actual, Node<T> newNode);
 
         //SobreCarga de Delete
-        public void Eliminar(Node<T> actual, T value, ValueIsThan valueIsLess,
-            ValueIsThan valueIsGreater, ValueIsThan valueIsEqual, 
-            ReplaceDelegate replaceDelegateLeft = null,
-            ReplaceDelegate replaceDelegateRight = null)
+        public void Eliminar(Node<T> actual,T value)
         {
             if (actual == null)
             {
                 return;
             }
-            else if (valueIsLess(actual, value))
+            else if (actual.Value.CompareTo(value) == -1)
             {
-                Eliminar(actual.Left, value,
-                    valueIsLess, valueIsGreater, valueIsEqual);
+                Eliminar(actual.Left, value);
             }
-            else if (valueIsGreater(actual, value))
+            else if (actual.Value.CompareTo(value) == 1)
             {
-                Eliminar(actual.Right, value,
-                    valueIsLess, valueIsGreater, valueIsEqual);
+                Eliminar(actual.Right, value);
             }
-            else if (valueIsEqual(actual, value))
+            else if (actual.Value.CompareTo(value) == 0)
             {
-                DeleteNode(actual, replaceDelegateLeft, replaceDelegateRight);
+                DeleteNode(actual);
                 throw new NotImplementedException();
             }
         }
 
-        private void DeleteNode(Node<T> nodeToDelete,
-            ReplaceDelegate replaceDelegateLeft,
-            ReplaceDelegate replaceDelegateRight)
+        private void DeleteNode(Node<T> nodeToDelete)
         {
             // Eliminar si tiene ambos
             if (nodeToDelete.Left != null && nodeToDelete.Right != null)
             {
                 Node<T> lefter = ToLeft(nodeToDelete.Right);
                 nodeToDelete.Value = lefter.Value;
-                DeleteNode(lefter, replaceDelegateLeft, replaceDelegateRight);
+                DeleteNode(lefter);
             }                     
             #region Eliminar el nodo si tiene solo uno de sus dos hijos
                 //Si tiene el nodo izquierdo
             else if (nodeToDelete.Left != null)
             {
-                Replace(nodeToDelete, nodeToDelete.Left, replaceDelegateLeft, replaceDelegateRight);
+                Replace(nodeToDelete, nodeToDelete.Left);
                 KillNode(nodeToDelete);
             }
             else if (nodeToDelete.Right != null)
             {
-                Replace(nodeToDelete, nodeToDelete.Right, replaceDelegateLeft, replaceDelegateRight);
+                Replace(nodeToDelete, nodeToDelete.Right);
                 KillNode(nodeToDelete);
             }
             #endregion
             // Ha llegado al final del árbol.
             else
             {
-                Replace(nodeToDelete, null, replaceDelegateLeft, replaceDelegateRight);
+                Replace(nodeToDelete, null);
                 KillNode(nodeToDelete);
             }
         }
@@ -87,18 +74,16 @@ namespace CustomGenerics.Structures
             nodeToDelete.Father = null;
         }
 
-        private void Replace(Node<T> actual, Node<T> newNode, 
-            ReplaceDelegate replaceDelegateLeft, 
-            ReplaceDelegate replaceDelegateRight)
+        private void Replace(Node<T> actual, Node<T> newNode)
         {
             if (actual.Father != null)
             {
                 //arbol->value == arbol->father->izq->value
-                if (replaceDelegateLeft(actual, newNode))
+                if (actual.Value.CompareTo(actual.Father.Left.Value) == 0)
                 {
                     actual.Father.Left = newNode;
                 }//arbol->value == arbol->father->der->value
-                else if (replaceDelegateRight(actual, newNode))
+                else if (actual.Value.CompareTo(actual.Father.Right.Value) == 0)
                 {
                     actual.Father.Right = newNode;
                 }
@@ -246,16 +231,6 @@ namespace CustomGenerics.Structures
                 postOrder(tree.Right);
                 Console.Write(tree.Value + " - ");
             }
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
         }
 
         public void Delete(Node<T> actual, T value)

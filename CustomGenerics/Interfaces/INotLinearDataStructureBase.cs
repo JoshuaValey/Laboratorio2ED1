@@ -7,7 +7,7 @@ using CustomGenerics.Structures;
 
 namespace CustomGenerics.Interfaces
 {
-    public interface INotLinearDataStructureBase<T>
+    public interface  INotLinearDataStructureBase<T> where T: IComparable
     {
         void Insert(Node<T> actual, T value, Node<T> father);
         void Delete(Node<T> actual, T value);
