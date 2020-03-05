@@ -7,12 +7,14 @@ using Laboratorio2ED1.Helpers;
 using Laboratorio2ED1.Models;
 using Newtonsoft.Json;
 using System.IO;
+using CustomGenerics;
 
 namespace Laboratorio2ED1.Controllers
 {
+    
     public class DrugController : Controller
     {
-
+      // CustomGenerics.Structures.Binary_tree<int> binarytree = null;
         public void JsonReader(string filepath)
         {
             StreamReader json = new StreamReader(filepath);
@@ -51,7 +53,7 @@ namespace Laboratorio2ED1.Controllers
             JsonReader(directoryPath);
             return View("index");
         }
-        
+
         public ActionResult Index()
         {
             return View();
@@ -66,10 +68,19 @@ namespace Laboratorio2ED1.Controllers
         }
         public ActionResult AddToCart(int id)
         {
-            Storage.Instance.OrderDrugList.Add(Storage.Instance.drugsList.Find((drug) => {
+            Storage.Instance.OrderDrugList.Add(Storage.Instance.drugsList.Find((drug) =>
+            {
                 if (drug.id == id)
                 {
-                    drug.existencia--;
+                    if (drug.existencia > 0)
+                    {
+                        drug.existencia--;
+
+                    }else if (drug.existencia == 0)
+                    {
+                       
+                    }
+
                     return true;
                 }
                 else
@@ -78,7 +89,7 @@ namespace Laboratorio2ED1.Controllers
 
                 }
             }));
-            
+
             return View("OrderList", Storage.Instance.drugsList); ;
         }
         public ActionResult CreateOrder()
@@ -91,8 +102,8 @@ namespace Laboratorio2ED1.Controllers
             try
             {
                 // TODO: Add insert logic here
-                Storage.Instance.Bill.CustomerAddress= collection["CustomerAddress"];
-                Storage.Instance.Bill.Nit= collection["Nit"]            ;
+                Storage.Instance.Bill.CustomerAddress = collection["CustomerAddress"];
+                Storage.Instance.Bill.Nit = collection["Nit"];
                 Storage.Instance.Bill.CustomerName = collection["CustomerName"];
 
                 Storage.Instance.Bill.DrugList = Storage.Instance.OrderDrugList;
@@ -101,7 +112,7 @@ namespace Laboratorio2ED1.Controllers
                     Storage.Instance.Bill.TotalToPay += item.precio;
                 }
 
-                return RedirectToAction("Bill"); 
+                return RedirectToAction("Bill");
             }
             catch
             {
@@ -180,7 +191,7 @@ namespace Laboratorio2ED1.Controllers
                 {
                     if (item.nombre == name)
                     {
-                        Storage.Instance.drugsList[contador].existencia = new Random().Next(1,15);
+                        Storage.Instance.drugsList[contador].existencia = new Random().Next(1, 15);
                         break;
                     }
                     contador++;
